@@ -1,38 +1,104 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Diary */
+.diary {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 100vw;
+  height: 100vh;
+  max-width: 640px;
+  padding: 2rem;
+  background: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 2px 29px 0;
+}
+
+/* Button */
+.default {
+  background: var(--color-grey);
+  color: black;
+}
+.positive {
+  background: var(--color-green);
+  color: white;
+}
+.negative {
+  background: var(--color-red);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Emotion */
+.emotion_default {
+  background: var(--color-grey);
+}
+.emotion_1 {
+  background: #64c964;
+  color: white;
+}
+.emotion_2 {
+  background: #9dd772;
+  color: white;
+}
+.emotion_3 {
+  background: #fdce17;
+  color: white;
+}
+.emotion_4 {
+  background: #fd8446;
+  color: white;
+}
+.emotion_5 {
+  background: #fd565f;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Page */
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+.emotion {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 8px;
+}
+.description {
+  font-size: 1.25rem;
+  transform: translateY(-0.5rem);
+}
+.content {
+  width: 100%;
+  min-height: 200px;
+  padding: 1rem;
+  background: var(--color-grey);
+  border-radius: 4px;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .diary {
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+  .emotion {
+    width: 200px;
+    height: 200px;
   }
 }

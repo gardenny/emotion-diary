@@ -1,0 +1,33 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.left {
+  display: flex;
+  gap: 0.5rem;
+}
+.right {
+  flex: 1;
+}
+.select {
+  background: #ececec;
+  height: 48px;
+  padding: 0 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.option {
+  font-size: var(--font-small);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .select {
+    width: 100px;
+    height: 40px;
+    padding: 0 0.5rem;
+    font-size: var(--font-small);
+  }
+}

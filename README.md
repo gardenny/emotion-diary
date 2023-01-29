@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+![diary](https://user-images.githubusercontent.com/110226567/215329946-b0b7878b-a051-4f99-bbc1-86f792702fad.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 📔 Emotion diary
 
-## Available Scripts
+나만의 작은 감정 일기장 👉 [Demo](https://emotion-diary-jone.web.app/)
+<br><br>
 
-In the project directory, you can run:
+## 📢 프로젝트 소개
 
-### `yarn start`
+### [감정을 기록할 수 있는 일기장]
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 오늘의 감정과 함께 간단한 일기를 작성할 수 있는 감정 일기장
+- 완전 좋음 ~ 끔찍함 까지 총 5가지 감정 중에서 선택하여 기록
+- 모바일 환경에서도 원활하게 사용할 수 있도록 반응형으로 제작
+<br><br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🗨️ 사용 기술
 
-### `yarn test`
+<div>
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
+  <img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=React-Router&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PostCSS-DD3A0A?style=flat-square&logo=PostCSS&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=white"/>
+</div>
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📋 주요 기능
 
-### `yarn build`
+### 1. 일기 작성하기
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 새 일기 쓰기  버튼을 클릭하여 새로운 일기 작성
+- yyyy-mm-dd 📅 버튼을 클릭 혹은 직접 입력하여 날짜 선택
+- 🟢 완전 좋음 ~ 🔴 끔찍함 까지 총 5가지의 감정 중에 선택
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. 일기 수정하기
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 일기 작성 페이지와 동일한 레이아웃
+- 기존에 저장된 날짜, 감정, 일기 내용을 불러와서 수정
 
-### `yarn eject`
+### 3. 일기 삭제하기
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 일기 수정 페이지로 이동한 후,  삭제하기  버튼을 통해 삭제
+- 추가/수정/삭제 등 모든 변경 사항은 로컬 스토리지에 저장
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. 일기 목록 보기
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 메인 페이지에 이달의 모든 일기 목록 노출
+- 상단의  <   >  버튼을 클릭하여 월 단위로 페이지 이동
+- 일기 아이템 클릭 시 해당 일기의 상세 내용 열람 가능
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 5. 일기 정렬하기
 
-## Learn More
+- 메인 페이지에서 드롭다운 메뉴를 통해 일기 목록 정렬
+- 최신순 / 오래된 순으로 정렬하여 조회 가능
+- 좋은 감정만 / 나쁜 감정만 필터링하여 조회 가능
+<br><br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 😊 나의 회고록
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 💧 어려웠던 점 및 개선 사항
 
-### Code Splitting
+험난한 여정이 될 것이라고 예상은 하고 있었지만, 생각보다 구현할 기능들이 엄청 많았다.
+브라우저의 렌더링 과정 및 방식, Node 환경 등 익혀야 할 개념들이 늘어나서 더 어렵게 느껴졌다.
+아직 함수를 최적화하는 로직에는 익숙지 않은 탓에 컴포넌트 최적화 과정에서 시간을 꽤나 날려먹었다..
+보통의 일기 어플처럼 달력과 연동하여 이달의 일기 목록을 한 눈에 파악할 수 있도록 만들고 싶었지만, 하지 못했다.
+역시 프로젝트 완성도에 대한 욕심은 끝이 없다.. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 🔥 배운 점 및 느낀 점
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+비록 고생은 많이 했지만, 이번 프로젝트 덕분에
+리액트에서 어떤 식으로 UI를 컴포넌트 단위로 쪼개어서 표기해 나갈 수 있는지 큰 틀을 이해할 수 있었다.
+확실히 웹 어플리케이션을 훨씬 간편하게 만들 수 있어 편하고 효율적인 것 같다.
+리액트가 프론트엔드 쪽에서 각광 받는 이유를 알겠다.
+하지만 아직 컴포넌트의 최적화에 대한 이해도가 부족하다고 느꼈고,
+부족함을 느낀 만큼 더욱 열심히 공부해서 마스터해내고 말 것이다. 공부할 거리가 생겨서 즐겁다!

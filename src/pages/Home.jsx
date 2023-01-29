@@ -25,15 +25,19 @@ export default function Home() {
   }, [diaryList, currentDate]);
 
   const decreaseMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, currentDate.getDate()));
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1));
   };
   const increaseMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate()));
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
   };
 
   return (
     <>
-      <Header text={headerText} leftBtn={<Button text={'< 이전 달력'} onClick={decreaseMonth} />} rightBtn={<Button text={'다음 달력 >'} onClick={increaseMonth} />} />
+      <Header
+        text={headerText}
+        leftBtn={<Button text={'< 이전 달력'} onClick={decreaseMonth} />}
+        rightBtn={<Button text={'다음 달력 >'} onClick={increaseMonth} />}
+      />
       <DiaryList diaryList={list} />
     </>
   );

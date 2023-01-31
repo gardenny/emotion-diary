@@ -39,4 +39,5 @@ select,
 textarea {
   border: none;
   outline: none;
+  color: black;
 }

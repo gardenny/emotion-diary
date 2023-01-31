@@ -15,6 +15,9 @@
   /* Font */
   --font-regular: 1rem;
   --font-small: 0.875rem;
+
+  /* Mobile */
+  --vh: 100%;
 }
 
 /* Global */

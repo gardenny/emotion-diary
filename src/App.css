@@ -78,7 +78,7 @@
 .title {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 1em;
+  margin-bottom: 1.5rem;
 }
 .emotion {
   width: 250px;
@@ -107,10 +107,18 @@
 /* Responsive */
 @media screen and (max-width: 768px) {
   .diary {
+    height: calc(var(--vh, 1vh) * 100);
     padding: 1rem;
+  }
+  .title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
   }
   .emotion {
     width: 200px;
     height: 200px;
+  }
+  .content {
+    min-height: 150px;
   }
 }

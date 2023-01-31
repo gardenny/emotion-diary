@@ -112,6 +112,15 @@ export default function App() {
     });
   };
 
+  // Set mobile screen
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
+
   return (
     <DiaryStateContext.Provider value={diary}>
       <DiaryDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>

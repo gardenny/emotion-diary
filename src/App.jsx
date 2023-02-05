@@ -43,31 +43,31 @@ const diaryExample = [
     id: uuid(),
     emotion: 1,
     content: '첫 번째 일기',
-    date: 1674219178573,
+    date: 1675601323377,
   },
   {
     id: uuid(),
     emotion: 2,
     content: '두 번째 일기',
-    date: 1674389178573,
+    date: 1675701323377,
   },
   {
     id: uuid(),
     emotion: 3,
     content: '세 번째 일기',
-    date: 1674619178573,
+    date: 1676101323377,
   },
   {
     id: uuid(),
     emotion: 4,
     content: '네 번째 일기',
-    date: 1674819178573,
+    date: 1676301323377,
   },
   {
     id: uuid(),
     emotion: 5,
     content: '다섯 번째 일기',
-    date: 1674919178673,
+    date: 1676601323377,
   },
 ];
 

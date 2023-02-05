@@ -5,7 +5,7 @@ export default function getStringDate(date) {
   let day = date.getDate();
 
   if (month < 10) month = `0${month}`;
-  if (day < 10) month = `0${day}`;
+  if (day < 10) day = `0${day}`;
 
   return `${year}-${month}-${day}`;
 }

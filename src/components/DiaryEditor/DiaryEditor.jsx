@@ -45,6 +45,7 @@ export default function DiaryEditor({ isEdit, originalDiary }) {
     }
   };
 
+  // 수정 모드일 경우, 해당 날짜로 세팅
   useEffect(() => {
     if (isEdit) {
       setDate(getStringDate(new Date(parseInt(originalDiary.date))));
@@ -71,14 +72,25 @@ export default function DiaryEditor({ isEdit, originalDiary }) {
           <h4 className={styles.title}>오늘의 감정</h4>
           <div className={styles.emotion}>
             {emotionList.map(item => (
-              <EmotionItem key={item.emotion_score} {...item} onClick={handleClickEmotion} isSelected={item.emotion_score === emotion} />
+              <EmotionItem
+                key={item.emotion_score}
+                {...item}
+                onClick={handleClickEmotion}
+                isSelected={item.emotion_score === emotion}
+              />
             ))}
           </div>
         </section>
         <section className={styles.section}>
           <h4 className={styles.title}>오늘의 일기</h4>
           <div>
-            <textarea className={styles.textarea} ref={contentRef} value={content} onChange={e => setContent(e.target.value)} placeholder="오늘 하루는 어땠나요?"></textarea>
+            <textarea
+              className={styles.textarea}
+              ref={contentRef}
+              value={content}
+              onChange={e => setContent(e.target.value)}
+              placeholder="오늘 하루는 어땠나요?"
+            ></textarea>
           </div>
         </section>
         <section className={styles.section}>

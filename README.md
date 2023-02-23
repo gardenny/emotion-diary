@@ -3,73 +3,187 @@
 # 📔 Emotion diary
 
 나만의 작은 감정 일기장 👉 [Demo](https://emotion-diary-jone.web.app/)
-<br><br>
 
-## 📢 프로젝트 소개
+<br />
 
-### [감정을 기록할 수 있는 일기장]
+## 📢 프로젝트 개요
 
-- 오늘의 감정과 함께 간단한 일기를 작성할 수 있는 감정 일기장
-- 완전 좋음 ~ 끔찍함 까지 총 5가지 감정 중에서 선택하여 기록
-- 모바일 환경에서도 원활하게 사용할 수 있도록 반응형으로 제작
-<br><br>
+오늘의 감정과 함께 간단한 일기를 작성할 수 있는 감정 일기장입니다.<br />
+일기는 월 단위로 기록되며, 원하는 기준에 따라 목록을 정렬할 수 있습니다.<br />
+기존의 투두 리스트보다는 조금 더 참신한 프로젝트를 진행하고 싶어 제작하게 되었습니다.
+
+<br />
 
 ## 🗨️ 사용 기술
 
-<div>
+<p>
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
   <img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=React-Router&logoColor=white"/>
   <img src="https://img.shields.io/badge/PostCSS-DD3A0A?style=flat-square&logo=PostCSS&logoColor=white"/>
   <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=white"/>
-</div>
-<br>
+</p>
+
+<br />
 
 ## 📋 주요 기능
 
-### 1. 일기 작성하기
+- 새로운 일기 작성
+- 일기 수정 및 삭제
+- 최신순 / 오래된 순 정렬
+- 좋은 감정만 / 나쁜 감정만 정렬
+- 일기 목록 월 단위로 열람 가능
 
-- 새 일기 쓰기  버튼을 클릭하여 새로운 일기 작성
-- yyyy-mm-dd 📅 버튼을 클릭 혹은 직접 입력하여 날짜 선택
-- 🟢 완전 좋음 ~ 🔴 끔찍함 까지 총 5가지의 감정 중에 선택
+<br />
 
-### 2. 일기 수정하기
+## 💻 소스 코드
 
-- 일기 작성 페이지와 동일한 레이아웃
-- 기존에 저장된 날짜, 감정, 일기 내용을 불러와서 수정
+전체 코드 보러 가기 👉 [Notion](https://imjone.notion.site/Emotion-diary-8a01a0f8e2fd43e2b84576eb631f6fb2)
 
-### 3. 일기 삭제하기
+### 📍 리듀서 및 디스패치 함수 정의
 
-- 일기 수정 페이지로 이동한 후,  삭제하기  버튼을 통해 삭제
-- 추가/수정/삭제 등 모든 변경 사항은 로컬 스토리지에 저장
+먼저 일기 추가/수정/삭제 기능을 담당할 리듀서와 디스패치 함수를 정의합니다.<br />
+`onCreate`, `onRemove`, `onEdit`을 통해 필요한 정보를 인자로 넣어서 디스패치 함수를 호출하면,<br />
+리듀서 내부에서는 각 케이스마다 전달 받은 `action.type`에 따라 적절하게 새로운 상태를 반환합니다.
 
-### 4. 일기 목록 보기
+```javascript
+// reducer
+const [diary, dispatch] = useReducer(reducer, []);
 
-- 메인 페이지에 이달의 모든 일기 목록 노출
-- 상단의  <   >  버튼을 클릭하여 월 단위로 페이지 이동
-- 일기 아이템 클릭 시 해당 일기의 상세 내용 열람 가능
+const reducer = (diary, action) => {
+  let newDiary = [];
+  switch (action.type) {
+    case 'INIT': {
+      return action.data;
+    }
+    case 'CREATE': {
+      newDiary = [action.data, ...diary];
+      break;
+    }
+    case 'REMOVE': {
+      newDiary = diary.filter(item => item.id !== action.targetId);
+      break;
+    }
+    case 'EDIT': {
+      newDiary = diary.map(item => (item.id === action.data.id ? { ...action.data } : item));
+      break;
+    }
+    default:
+      return diary;
+  }
+  return newDiary;
+};
+```
 
-### 5. 일기 정렬하기
+```javascript
+// dispatch
+const onCreate = (date, content, emotion) => {
+  dispatch({
+    type: 'CREATE',
+    data: {
+      id: uuid(),
+      content,
+      date: new Date(date).getTime(),
+      emotion,
+    },
+  });
+};
 
-- 메인 페이지에서 드롭다운 메뉴를 통해 일기 목록 정렬
-- 최신순 / 오래된 순으로 정렬하여 조회 가능
-- 좋은 감정만 / 나쁜 감정만 필터링하여 조회 가능
-<br><br>
+const onRemove = targetId => [dispatch({ type: 'REMOVE', targetId })];
 
-## 😊 나의 회고록
+const onEdit = (targetId, date, content, emotion) => {
+  dispatch({
+    type: 'EDIT',
+    data: {
+      id: targetId,
+      content,
+      date: new Date(date).getTime(),
+      emotion,
+    },
+  });
+};
+```
 
-### 💧 어려웠던 점 및 개선 사항
+### 📍 Context 생성 및 공급
 
-험난한 여정이 될 것이라고 예상은 하고 있었지만, 생각보다 구현할 기능들이 엄청 많았다.
-브라우저의 렌더링 과정 및 방식, Node 환경 등 익혀야 할 개념들이 늘어나서 더 어렵게 느껴졌다.
-아직 함수를 최적화하는 로직에는 익숙지 않은 탓에 컴포넌트 최적화 과정에서 시간을 꽤나 날려먹었다..
-보통의 일기 어플처럼 달력과 연동하여 이달의 일기 목록을 한 눈에 파악할 수 있도록 만들고 싶었지만, 하지 못했다.
-역시 프로젝트 완성도에 대한 욕심은 끝이 없다.. 
+자주 사용될 것 같은 전체 일기 데이터와 특정 행동에 필요한 함수들을 Context로 생성하여 공급합니다.<br />
+`DiaryStateContext`를 생성한 후, Provider의 `value`로 원하는 데이터를 객체 형태로 묶어서 전달해줍니다.
 
-### 🔥 배운 점 및 느낀 점
+```javascript
+// App.jsx
 
-비록 고생은 많이 했지만, 이번 프로젝트 덕분에
-리액트에서 어떤 식으로 UI를 컴포넌트 단위로 쪼개어서 표기해 나갈 수 있는지 큰 틀을 이해할 수 있었다.
-확실히 웹 어플리케이션을 훨씬 간편하게 만들 수 있어 편하고 효율적인 것 같다.
-리액트가 프론트엔드 쪽에서 각광 받는 이유를 알겠다.
-하지만 아직 컴포넌트의 최적화에 대한 이해도가 부족하다고 느꼈고,
-부족함을 느낀 만큼 더욱 열심히 공부해서 마스터해내고 말 것이다. 공부할 거리가 생겨서 즐겁다!
+export const DiaryStateContext = createContext(); // 일기 데이터
+export const DiaryDispatchContext = createContext(); // 디스패치 함수
+
+<DiaryStateContext.Provider value={diary}>
+  <DiaryDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>
+    { ... }
+  </DiaryDispatchContext.Provider>
+</DiaryStateContext.Provider>
+```
+
+### 📍 일기 목록 날짜순 정렬
+
+기준값이 되는 `sortType`을 정의한 후 정렬 기준이 최신순(lastest)인지 오래된 순(oldest)인지에 따라서,<br />
+`compare()` 함수를 통해 1차적으로 정렬 과정을 거친 후에 새로운 배열로 복사하여 다시 최종 정렬을 해줍니다.<br />
+sort된 배열은 `sortedList` 라는 변수에 할당되며, `getProcessedDiaryList()` 함수의 최종 리턴 값이 됩니다.<br />
+
+```javascript
+// DiaryList.jsx
+
+const sortOptionList = [
+  { value: 'latest', name: '최신순' },
+  { value: 'oldest', name: '오래된 순' },
+];
+
+// Select Component
+const ControlMenu = ({ value, onChange, optionList }) => {
+  return (
+    <select value={value} onChange={e => onChange(e.target.value)}>
+      {optionList.map((item, index) => (
+        <option key={index} value={item.value}>
+          {item.name}
+        </option>
+      ))}
+    </select>
+  );
+};
+
+export default function DiaryList({ diaryList }) {
+  const [sortType, setSortType] = useState('latest');
+
+  const getProcessedDiaryList = () => {
+    const compare = (a, b) => {
+      if (sortType === 'latest') {
+        return parseInt(b.date) - parseInt(a.date);
+      } else {
+        return parseInt(a.date) - parseInt(b.date);
+      }
+    };
+
+    const copyList = JSON.parse(JSON.stringify(diaryList));
+    const sortedList = copyList.sort(compare);
+    return sortedList;
+  };
+
+  return (
+    <div>
+      <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
+      {getProcessedDiaryList().map(diary => (
+        <DiaryItem key={diary.id} {...diary} />
+      ))}
+    </div>
+  );
+}
+
+DiaryList.defaultProps = {
+  diaryList: [],
+};
+```
+
+<br />
+
+## 😊 배운 점 및 느낀 점
+
+- 리액트에서 어떤 식으로 UI를 컴포넌트 단위로 쪼개어서 표기해 나갈 수 있는지 큰 틀을 이해할 수 있었습니다.
+- 목록 정렬 및 월 단위 날짜 계산 등 나름 여러 가지 시도를 통해 다양한 기능 구현에 대한 시야를 넓힐 수 있었습니다.
+- 컴포넌트 최적화에 대한 이해도가 부족하다고 느꼈고, 부족함을 느낀 만큼 더욱 열심히 공부해야겠다고 다짐하였습니다.

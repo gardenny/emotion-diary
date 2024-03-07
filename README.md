@@ -37,7 +37,7 @@
 
 ## 💻 소스 코드
 
-전체 코드 보러 가기 👉 [Notion](https://imjone.notion.site/Emotion-diary-8a01a0f8e2fd43e2b84576eb631f6fb2)
+전체 코드 보러 가기 👉 [Notion](https://imjone.notion.site/Emotion-diary-8a01a0f8e2fd43e2b84576eb631f6fb2?pvs=4)
 
 ### 📍 리듀서 및 디스패치 함수 정의
 
